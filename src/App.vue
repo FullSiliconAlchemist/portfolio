@@ -32,4 +32,8 @@ body {
     }
   }
 }
+
+#canvas {
+  position: absolute;
+}
 </style>
