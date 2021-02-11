@@ -1,4 +1,7 @@
 # portfolio
+My portfolio website to showcase skills and past works
+
+Experimenting with Vue Js as a frontend framework and Babylon Js as a 3D library
 
 ## Project setup
 ```
@@ -22,3 +25,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
