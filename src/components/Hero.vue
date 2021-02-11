@@ -1,8 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <canvas id="canv"></canvas>
-  </div>
+  <div>
+    <canvas id="gameCanvas"></canvas>
+  </div>  
 </template>
 
 <script lang="ts">
@@ -11,20 +10,18 @@ import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBu
 
 @Component
 export default class Hero extends Vue {
-  @Prop() private msg!: string;
-
+  // @Prop() private msg!: string;
   constructor() {
     super();
     // create the canvas html element and attach it to the webpage
-    const canvas: HTMLCanvasElement = document.getElementById("canv") as HTMLCanvasElement;
-    // const canvas = document.createElement("canvas");
-    // canvas.style.width = "100%";
-    // canvas.style.height = "100%";
-    // canvas.style.position = "absolute";
-    // canvas.style.zIndex = "-1";
-    // canvas.style.top = "0";
-    // canvas.id = "gameCanvas";
-    // document.body.appendChild(canvas);
+    const canvas = document.createElement("canvas");
+    canvas.style.width = "100%";
+    canvas.style.height = "30rem";
+    canvas.style.position = "absolute";
+    canvas.style.zIndex = "-1";
+    canvas.style.top = "0";
+    canvas.id = "gameCanvas";
+    document.body.appendChild(canvas);
 
     // initialize babylon scene and engine
     const engine = new Engine(canvas, true);
