@@ -16,6 +16,9 @@
       "webpack-env"
     ],
     "paths": {
+      "external-assets": [
+        "public/*"
+      ],
       "@/*": [
         "src/*"
       ]

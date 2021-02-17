@@ -1,7 +1,12 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <Hero msg="Charles Rabbat"/>
+    <div class="section">
+      <h1>
+        This is where I talk about stuff
+      </h1>
+    </div>
+    <Hero/>
   </div>
 </template>
 
@@ -18,5 +23,18 @@ export default class Home extends Vue {}
 </script>
 
 <style lang="scss">
-
+  .home {
+    height: 1000vh;
+  }
+  .section {
+    margin-top: 10rem!important;
+    height: 100rem;
+    width: 80%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+    background-color: aquamarine;
+  }
 </style>
