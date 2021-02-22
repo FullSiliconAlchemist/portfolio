@@ -13,10 +13,21 @@ import BabylonService from '../services/babylon.service'
 export default class Hero extends Vue {
   // @Prop() private isLoading = true;
 
-  mounted() {
-    const canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;
-    const babylon = new BabylonService();
-    babylon.serveScene(canvas);
+  canvas!: HTMLCanvasElement;
+  babylon!: BabylonService;
+
+  mounted(): void {
+    this.canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;
+    this.babylon = new BabylonService();
+    this.babylon.serveScene(this.canvas);
+  }
+
+  created(): void {
+    console.log('Vue created');
+  }
+
+  destroy(): void {
+    console.log('Vue destroyed');
   }
 
 }

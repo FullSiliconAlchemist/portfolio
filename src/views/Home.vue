@@ -13,14 +13,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Hero from '@/components/Hero.vue'; // @ is an alias to /src
-import { ILoadingScreen } from '@babylonjs/core';
 
 @Component({
   components: {
     Hero,
   },
 })
-export default class Home extends Vue {}
+export default class Home extends Vue { }
 </script>
 
 <style lang="scss">

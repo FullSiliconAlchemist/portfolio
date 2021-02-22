@@ -5,17 +5,52 @@ export class CustomLoadingScreen implements ILoadingScreen {
     loadingUIBackgroundColor!: string;
     loadingUIText: string;
 
+    loadingDiv!: HTMLElement | null;
+
     constructor(loadingText: string) {
         this.loadingUIText = loadingText;
+        this.loadingDiv = document.getElementById('customLoadingScreen');
     }
 
     public displayLoadingUI(): void {
-        
-        alert(this.loadingUIText);
+        if (this.loadingDiv === null || this.loadingDiv === undefined) {
+            this.loadingDiv = document.createElement('div');
+            this.loadingDiv.id = 'customLoadingScreen';
+            this.loadingDiv.innerHTML = this.loadingUIText;
+            const customLoadingCss = document.createElement('style');
+            customLoadingCss.type = 'text/css';
+            customLoadingCss.innerHTML = 
+                `#customLoadingScreen {
+                    position: absolute;
+                    background-color: black;
+                    color: white;
+                    text-align: center;
+                    z-index: 100;
+                    width: 100%;
+                    height: 100vh;
+                    top: 0;
+                }`;
+            document.getElementsByTagName('head')[0].appendChild(customLoadingCss);
+        } else {
+            console.log(this.loadingDiv);
+            this.loadingDiv.style.display = '';
+        }
+
+        // Hide document overflow
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+
+        document.body.appendChild(this.loadingDiv);
     }
 
     public hideLoadingUI(): void {
-        alert("Loaded!");
+        const loading = document.getElementById('customLoadingScreen');
+        if (loading !== null) {
+            loading.style.display = 'none';
+        }
+        else {
+            console.error('Scene loaded. Loading UI failed.');   
+        }
+        document.getElementsByTagName('body')[0].style.overflow = '';
     }
 }
 
@@ -40,16 +75,6 @@ export default class BabylonService {
         // No camera movements unless the "check" button works
         camera.attachControl(canvas, true);
 
-        SceneLoader.ImportMeshAsync('', '../assets/', 'untitled.glb', scene)
-        .then((meshes) => {
-            meshes.meshes.map((mesh) => {
-                if (mesh.name === '__root__') {
-                    mesh.translate(new Vector3(0, 1, 0), -1.5);
-                }
-            });
-            engine.hideLoadingUI();
-        });
-
         const light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
         // const sphere: Mesh = MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
 
@@ -63,6 +88,16 @@ export default class BabylonService {
                     scene.debugLayer.show();
                 }
             }
+        });
+
+        SceneLoader.ImportMeshAsync('', '../assets/', 'untitled.glb', scene)
+        .then((meshes) => {
+            meshes.meshes.map((mesh) => {
+                if (mesh.name === '__root__') {
+                    mesh.translate(new Vector3(0, 1, 0), -1.5);
+                }
+            });
+            engine.hideLoadingUI();
         });
 
         // run the main render loop
