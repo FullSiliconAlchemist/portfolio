@@ -1,5 +1,8 @@
-<template>  
-  <canvas id="gameCanvas"></canvas>
+<template>
+  <div>
+      <div id="loadingScreen"></div>
+      <canvas id="gameCanvas"></canvas>
+  </div>
 </template>
 
 <script lang="ts">
@@ -8,7 +11,7 @@ import BabylonService from '../services/babylon.service'
 
 @Component
 export default class Hero extends Vue {
-  // @Prop() private canvas!: HTMLCanvasElement | null;
+  // @Prop() private isLoading = true;
 
   mounted() {
     const canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;

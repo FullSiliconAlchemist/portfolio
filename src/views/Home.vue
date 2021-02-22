@@ -1,18 +1,19 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <div class="section">
       <h1>
-        This is where I talk about stuff
+        MADMULTIMEDIA
       </h1>
     </div>
-    <Hero/>
+    <Hero></Hero>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Hero from '@/components/Hero.vue'; // @ is an alias to /src
+import { ILoadingScreen } from '@babylonjs/core';
 
 @Component({
   components: {
@@ -35,6 +36,6 @@ export default class Home extends Vue {}
     right: 0;
     margin: auto;
     z-index: 10;
-    background-color: aquamarine;
+    background-color: transparent;
   }
 </style>
