@@ -28,7 +28,7 @@ export class CustomLoadingScreen implements ILoadingScreen {
                     z-index: 100;
                     width: 100%;
                     height: 100vh;
-                    top: 0;
+                    top: ${window.scrollY}px;
                 }`;
             document.getElementsByTagName('head')[0].appendChild(customLoadingCss);
         } else {
@@ -38,6 +38,7 @@ export class CustomLoadingScreen implements ILoadingScreen {
 
         // Hide document overflow
         document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+        document.getElementsByTagName('html')[0].style.overflow = 'hidden';
 
         document.body.appendChild(this.loadingDiv);
     }
@@ -51,6 +52,7 @@ export class CustomLoadingScreen implements ILoadingScreen {
             console.error('Scene loaded. Loading UI failed.');   
         }
         document.getElementsByTagName('body')[0].style.overflow = '';
+        document.getElementsByTagName('html')[0].style.overflow = '';
     }
 }
 
@@ -63,6 +65,8 @@ export default class BabylonService {
         const scene = new Scene(engine);
         const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 1.2, Math.PI / 2.5, 10, Vector3.Zero(), scene);
         scene.clearColor = new Color4(0.02, 0.05, 0.08, 1);
+
+        // console.log(window.scrollY);
 
         // No default loading screen, should create my own
         const loadingScreen = new CustomLoadingScreen("I'm loading!!");
