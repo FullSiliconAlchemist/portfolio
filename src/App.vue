@@ -24,6 +24,8 @@ body {
 
 #nav {
   position: fixed;
+  top: 0;
+  z-index: 100;
   padding: 30px;
   a {
     font-weight: bold;

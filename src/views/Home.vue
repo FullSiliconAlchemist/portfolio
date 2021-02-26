@@ -1,12 +1,24 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <div class="section">
+    <Hero></Hero>
+    <div class="title">
       <h1>
         MADMULTIMEDIA
       </h1>
     </div>
-    <Hero></Hero>
+    <section>
+      <h2>Section 1</h2>
+    </section>
+    <section>
+      <h2>Section 2</h2>
+    </section>
+    <section>
+      <h2>Section 3</h2>
+    </section>
+    <section>
+      <h2>Section 4</h2>
+    </section>
   </div>
 </template>
 
@@ -24,17 +36,35 @@ export default class Home extends Vue { }
 
 <style lang="scss">
   .home {
-    height: 1000vh;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
   }
-  .section {
-    margin-top: 10rem!important;
-    height: 100rem;
+  .title {
+    font-size: 2rem;
+    margin-top: 8rem!important;
+    height: 20rem;
     width: 80%;
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     margin: auto;
     z-index: 10;
     background-color: transparent;
+  }
+  section {
+    margin-top: 10rem!important;
+    height: 100vh;
+    width: 80%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 10;
+    background-color: transparent;
+  	scroll-snap-align: center;
+  }
+  h2 {
+    position: absolute;
+    left: 0;
   }
 </style>

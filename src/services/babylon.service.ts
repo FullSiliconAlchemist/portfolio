@@ -1,4 +1,4 @@
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, SceneLoader, Color4, ILoadingScreen } from "@babylonjs/core";
+import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, SceneLoader, Color4, ILoadingScreen, MeshBuilder, AbstractMesh, Material, StandardMaterial } from "@babylonjs/core";
 
 export class CustomLoadingScreen implements ILoadingScreen {
 
@@ -25,7 +25,7 @@ export class CustomLoadingScreen implements ILoadingScreen {
                     background-color: black;
                     color: white;
                     text-align: center;
-                    z-index: 100;
+                    z-index: 1000;
                     width: 100%;
                     height: 100vh;
                     top: ${window.scrollY}px;
@@ -63,10 +63,8 @@ export default class BabylonService {
         // initialize babylon scene and engine
         const engine = new Engine(canvas, true);
         const scene = new Scene(engine);
-        const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 1.2, Math.PI / 2.5, 10, Vector3.Zero(), scene);
+        const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 0.6, Math.PI / 2, 40, Vector3.Zero(), scene);
         scene.clearColor = new Color4(0.02, 0.05, 0.08, 1);
-
-        // console.log(window.scrollY);
 
         // No default loading screen, should create my own
         const loadingScreen = new CustomLoadingScreen("I'm loading!!");
@@ -75,37 +73,79 @@ export default class BabylonService {
         // show the loading screen
         engine.displayLoadingUI();
 
-        // console.log(window.scrollY);
         // No camera movements unless the "check" button works
         camera.attachControl(canvas, true);
 
         const light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
-        // const sphere: Mesh = MeshBuilder.CreateSphere("sphere", { diameter: 1 }, scene);
+        let mad: AbstractMesh;
+
+        // scene.debugLayer.show();
 
         // hide/show the Inspector
-        window.addEventListener("keydown", (ev) => {
-            // Shift+Ctrl+Alt+I
-            if (ev.shiftKey && ev.ctrlKey && ev.altKey && ev.keyCode === 73) {
-                if (scene.debugLayer.isVisible()) {
-                    scene.debugLayer.hide();
-                } else {
-                    scene.debugLayer.show();
-                }
-            }
-        });
+        // window.addEventListener("keydown", (ev) => {
+        //     // Shift+Ctrl+Alt+I
+        //     if (ev.shiftKey && ev.ctrlKey && ev.altKey) {
+        //         if (scene.debugLayer.isVisible()) {
+        //             scene.debugLayer.hide();
+        //         } else {
+        //             scene.debugLayer.show();
+        //         }
+        //     }
+        // });
 
-        SceneLoader.ImportMeshAsync('', '../assets/', 'untitled.glb', scene)
+        SceneLoader.ImportMeshAsync('', '../assets/', 'mad.glb', scene)
         .then((meshes) => {
             meshes.meshes.map((mesh) => {
                 if (mesh.name === '__root__') {
-                    mesh.translate(new Vector3(0, 1, 0), -1.5);
+                    mad = mesh;
                 }
             });
             engine.hideLoadingUI();
         });
 
+        // Create array of points to describe the curve
+        const points: Vector3[] = [];
+        const n = 5000; // number of points
+        const r = 10; //radius
+        for (let i = 0; i < n ; i++) {
+            const point = new Vector3(
+                0 + r * Math.sin(i * 4 * Math.PI / (2 * n)),
+                0 + r * Math.cos(i * 4 * Math.PI / (2 * n)),
+                0 + r * Math.cos(i * 4 * Math.PI / (2 * n))
+            )
+            points.push(point);
+        }
+
+        const options = {
+            points,
+            updatable: true
+        }
+
+        // Creation of a lines mesh
+        const lineMaterial = new StandardMaterial('line', scene);
+        const lines = MeshBuilder.CreateLines("lines", options, scene);
+        lines.alpha = 0;
+
+        // let last = window.scrollY;            
         // run the main render loop
+        let pos = 0;
+
         engine.runRenderLoop(() => {
+            // console.log(mad);
+            if (mad) {
+                // pos = ++pos % points.length;
+                pos = (window.scrollY) % points.length;
+                mad.position = points[pos];
+            }
+
+            // if (last > window.scrollY) {
+            //     scene.meshes[0].rotate(new Vector3(0, 1, 0), window.scrollY * 0.00005);
+            //     last = window.scrollY;
+            // }
+            // else if (last < window.scrollY) {
+            //     scene.meshes[0].rotate(new Vector3(0, 1, 0), window.scrollY * -0.00005);
+            //     last = window.scrollY;
+            // }
             scene.render();
         });
     }
