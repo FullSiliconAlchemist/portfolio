@@ -37,7 +37,6 @@ export default class Home extends Vue { }
 <style lang="scss">
   .home {
     scroll-snap-type: y mandatory;
-    overflow-y: scroll;
   }
   .title {
     font-size: 2rem;

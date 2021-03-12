@@ -63,7 +63,7 @@ export default class BabylonService {
         // initialize babylon scene and engine
         const engine = new Engine(canvas, true);
         const scene = new Scene(engine);
-        const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 0.6, Math.PI / 2, 40, Vector3.Zero(), scene);
+        const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 0.6, Math.PI / 2, 35, Vector3.Zero(), scene);
         scene.clearColor = new Color4(0.02, 0.05, 0.08, 1);
 
         // No default loading screen, should create my own
@@ -81,9 +81,7 @@ export default class BabylonService {
 
         // scene.debugLayer.show();
 
-        // hide/show the Inspector
         // window.addEventListener("keydown", (ev) => {
-        //     // Shift+Ctrl+Alt+I
         //     if (ev.shiftKey && ev.ctrlKey && ev.altKey) {
         //         if (scene.debugLayer.isVisible()) {
         //             scene.debugLayer.hide();
@@ -104,14 +102,15 @@ export default class BabylonService {
         });
 
         // Create array of points to describe the curve
+        // -10 + r * Math.cos(i * 4 * Math.PI / (2 * n))
         const points: Vector3[] = [];
         const n = 5000; // number of points
         const r = 10; //radius
         for (let i = 0; i < n ; i++) {
             const point = new Vector3(
-                0 + r * Math.sin(i * 4 * Math.PI / (2 * n)),
-                0 + r * Math.cos(i * 4 * Math.PI / (2 * n)),
-                0 + r * Math.cos(i * 4 * Math.PI / (2 * n))
+                -r * Math.sin(i * 4 * Math.PI / (2 * n)),
+                Math.cos(0 * 4 * Math.PI / (2 * n)),
+                5
             )
             points.push(point);
         }
