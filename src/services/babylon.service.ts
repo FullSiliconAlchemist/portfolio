@@ -130,10 +130,9 @@ export default class BabylonService {
         let pos = 0;
 
         engine.runRenderLoop(() => {
-            // console.log(mad);
             if (mad) {
                 // pos = ++pos % points.length;
-                pos = (window.scrollY) % points.length;
+                pos = (Math.ceil(window.scrollY)) % points.length;
                 mad.position = points[pos];
             }
 
