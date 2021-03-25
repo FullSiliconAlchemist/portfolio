@@ -7,22 +7,16 @@
         MADMULTIMEDIA
       </h1>
     </div>
-    <section>
-      <h2>About</h2>
+    <section v-for="(work, index) in works" :key="index">
+      <h2>
+        {{ work.title }}
+      </h2>
+      <div v-for="(image, index) in work.images" :key="index">
+        <img :src="image"/>
+      </div>
       <p>
-        I’m a believer in the power of multimedia and that information technology is the way to providing a more informed world and ultimately a better one. The core of this world starts with good design and engineering solutions that people love to use.
-        Having worked at a startup for most of my undergrad, I’ve seen the ins and outs of a tech startup. Whether it be the technological pipeline, from design to execution and deployment or on the business development side, from developing marketing strategies to raising venture capital. I wore many hats in a short period of time while still remaining focused on my core set of responsibilities. 
-        Types of multimedia work I’ve explored varies from interactive installations, games, to web apps like the types we use on a day to day basis.
+        {{ work.description }}
       </p>
-    </section>
-    <section>
-      <h2>Section 2</h2>
-    </section>
-    <section>
-      <h2>Section 3</h2>
-    </section>
-    <section>
-      <h2>Section 4</h2>
     </section>
   </div>
 </template>
@@ -30,13 +24,34 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Hero from '@/components/Hero.vue'; // @ is an alias to /src
+import FirebaseService, { WorksModel } from '../services/firebase.service'
 
 @Component({
   components: {
-    Hero,
+    Hero
   },
 })
-export default class Home extends Vue { }
+export default class Home extends Vue {
+
+  fbService!: FirebaseService;
+  works!: WorksModel[];
+
+  data() {
+    this.fbService = new FirebaseService();
+    this.works = this.fbService.getWorks();
+    return {
+      works: this.works
+    }
+  }
+
+  created(): void {
+    console.log('Vue created');
+  }
+
+  destroy(): void {
+    console.log('Vue destroyed');
+  }
+}
 </script>
 
 <style lang="scss">

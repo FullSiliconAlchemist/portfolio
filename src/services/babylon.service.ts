@@ -74,7 +74,7 @@ export default class BabylonService {
         engine.displayLoadingUI();
 
         // No camera movements unless the "check" button works
-        camera.attachControl(canvas, true);
+        // camera.attachControl(canvas, true);
 
         const light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
         let mad: AbstractMesh;
@@ -135,7 +135,6 @@ export default class BabylonService {
                 pos = (Math.ceil(window.scrollY)) % points.length;
                 mad.position = points[pos];
             }
-
             // if (last > window.scrollY) {
             //     scene.meshes[0].rotate(new Vector3(0, 1, 0), window.scrollY * 0.00005);
             //     last = window.scrollY;
