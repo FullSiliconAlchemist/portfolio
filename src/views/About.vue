@@ -1,17 +1,29 @@
 <template>
   <div class="about">
     <section>
-      <h2>About</h2>
+      <h2>
+        Creatives can't help but make 
+      </h2>
+      <h1>
+        MAD
+      </h1>
+      <h2 class="mm">
+        multimedia.
+      </h2>
       <p>
-        Why “madmultimedia”?
-        Madness is the creative process’ lowest point, but it’s also the inflection point towards a greater outcome. 
-        I’m a believer in the power of multimedia to tell compelling stories, deliver timely content, and provide transformational opportunities for individuals and crowds. I believe information technology is the our best tool way to providing create a more informed world and ultimately a better one. The core of this world starts with   good design and engineering solutions that people will love to use.
+        I’m a believer in the power of multimedia to tell compelling stories, deliver timely content, and provide transformational opportunities for individuals and crowds.
+        I believe information technology is the our best tool way to providing create a more informed world and ultimately a better one.
+        The core of this world starts with good design and engineering solutions that people will love to use.
       </p>
       <p>
-        I’ve worked on a range of projects including interactive installations, games, and web apps. I am proficient in fullstack web technologies, UX design and data modelling, as well as being an avid game programmer, 3D graphics programmer, 3D modeler and level designer. I completed the Bachelor in Computer Science and Computation Arts at Concordia University in Montreal.
+        I’ve worked on a range of projects including interactive installations, games, and web apps.
+        I am proficient in fullstack web technologies, UX design and data modelling, as well as being an avid game programmer, 3D graphics programmer, 3D modeler and level designer.
+        I completed the Bachelor in Computer Science and Computation Arts at Concordia University in Montreal.
       </p>
       <p>
-        Having worked at a tech startup for most of my undergradthe last four years, I’ve seen the ins and outs of a tech startup. Whether it be the technological pipeline, from design to execution and deployment or on the business development side, from developing marketing strategies to raising venture capital. I wore many hats in a short period of time while still remaining focused on my core set of responsibilities.
+        Having worked at a tech startup for most of my undergrad in the last four years, I’ve seen the ins and outs of a startup company.
+        Whether it be the technological pipeline, from design to execution and deployment or on the business development side, from developing marketing strategies to raising venture capital.
+        I wore many hats in a short period of time while still remaining focused on my core set of responsibilities.
       </p>
     </section>
   </div>
@@ -51,9 +63,21 @@ export default class About extends Vue { }
     z-index: 10;
     background-color: transparent;
   }
+  h1 {
+    font-family: Chango-Regular;
+    font-size: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
   h2 {
     position: relative;
     text-align: left;
+    left: 0;
+  }
+  .mm {
+    position: relative;
+    text-align: right;
     left: 0;
   }
   p {

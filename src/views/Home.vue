@@ -1,10 +1,12 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <Hero></Hero>
     <div class="title">
       <h1>
-        MADMULTIMEDIA
+        MAD
+      </h1>
+      <h1>
+        MULTIMEDIA
       </h1>
     </div>
     <section v-for="(work, index) in works" :key="index">
@@ -12,7 +14,7 @@
         {{ work.title }}
       </h2>
       <div v-for="(image, index) in work.images" :key="index">
-        <img :src="image"/>
+        <img :src="imageResize(image)"/>
       </div>
       <p>
         {{ work.description }}
@@ -29,12 +31,19 @@ import FirebaseService, { WorksModel } from '../services/firebase.service'
 @Component({
   components: {
     Hero
-  },
+  }
 })
 export default class Home extends Vue {
 
   fbService!: FirebaseService;
   works!: WorksModel[];
+
+  imageResize(uploadCareLink: string): string {
+    const prefix = uploadCareLink.slice(0, 57);
+    const suffix = uploadCareLink.slice(57);
+    const resize = '/-/resize/' + Math.floor(window.innerWidth * 0.8) + '/';
+    return prefix + resize + suffix;
+  }
 
   data() {
     this.fbService = new FirebaseService();
@@ -60,8 +69,8 @@ export default class Home extends Vue {
   }
   .title {
     font-size: 2rem;
-    margin-top: 8rem!important;
-    height: 20rem;
+    margin-top: 6rem!important;
+    height: 100vh;
     width: 80%;
     position: relative;
     left: 0;
@@ -71,7 +80,7 @@ export default class Home extends Vue {
     background-color: transparent;
   }
   section {
-    margin-top: 10rem!important;
+    margin-bottom: 10rem!important;
     height: auto;
     width: 80%;
     position: relative;
@@ -80,6 +89,12 @@ export default class Home extends Vue {
     margin: auto;
     z-index: 10;
     background-color: transparent;
+  }
+  h1 {
+    font-family: Chango-Regular;
+    font-size: 5rem;
+    margin: 0 1rem 0;
+    text-align: center;
   }
   h2 {
     position: relative;
@@ -90,5 +105,13 @@ export default class Home extends Vue {
     position: relative;
     text-align: left;
     padding-top: 2rem;
+  }
+  @media screen and (max-width: 400px)  {
+    h1 {
+      font-family: Chango-Regular;
+      font-size: 3rem;
+      word-wrap: break-word;
+      margin: 0 1rem 0;
+    }
   }
 </style>

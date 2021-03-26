@@ -96,6 +96,10 @@ export default class BabylonService {
             meshes.meshes.map((mesh) => {
                 if (mesh.name === '__root__') {
                     mad = mesh;
+                    mad.scaling._x = 3
+                    mad.scaling._y = 3
+                    mad.scaling._z = 3
+                    mad.rotate(new Vector3(0, 1, 0), 180)
                 }
             });
             engine.hideLoadingUI();
@@ -121,7 +125,6 @@ export default class BabylonService {
         }
 
         // Creation of a lines mesh
-        const lineMaterial = new StandardMaterial('line', scene);
         const lines = MeshBuilder.CreateLines("lines", options, scene);
         lines.alpha = 0;
 
@@ -134,15 +137,8 @@ export default class BabylonService {
                 // pos = ++pos % points.length;
                 pos = (Math.ceil(window.scrollY)) % points.length;
                 mad.position = points[pos];
+                mad.rotate(new Vector3(0, 1, 0), -0.001);
             }
-            // if (last > window.scrollY) {
-            //     scene.meshes[0].rotate(new Vector3(0, 1, 0), window.scrollY * 0.00005);
-            //     last = window.scrollY;
-            // }
-            // else if (last < window.scrollY) {
-            //     scene.meshes[0].rotate(new Vector3(0, 1, 0), window.scrollY * -0.00005);
-            //     last = window.scrollY;
-            // }
             scene.render();
         });
     }
