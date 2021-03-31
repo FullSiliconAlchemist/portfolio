@@ -27,6 +27,7 @@ body {
   top: 0;
   z-index: 100;
   padding: 30px;
+  right: 0;
   a {
     font-weight: bold;
     color: #2c3e50;

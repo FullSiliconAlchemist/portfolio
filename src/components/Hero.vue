@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import BabylonService from '../services/babylon.service'
 
 @Component
@@ -22,14 +22,13 @@ export default class Hero extends Vue {
     this.babylon.serveScene(this.canvas);
   }
 
-  created(): void {
-    console.log('Vue created');
-  }
+  // created(): void {
+  //   console.log('Vue created');
+  // }
 
-  destroy(): void {
-    console.log('Vue destroyed');
-  }
-
+  // destroy(): void {
+  //   console.log('Vue destroyed');
+  // }
 }
 </script>
 
