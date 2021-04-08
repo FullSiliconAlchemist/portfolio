@@ -2,18 +2,18 @@
     <div class="modal-mask" v-if="title == showModal">
         <div class="modal-wrapper">
             <div class="modal-container">
-                <h2>
-                    {{ title }}
-                </h2>
                 <carousel :per-page="1"
-                          :navigation-enabled="true"
-                          :min-swipe-distance="1"
-                          :autoplay="true"
-                          :autoplayHoverPause="true">
+                        :navigation-enabled="true"
+                        :min-swipe-distance="1"
+                        :autoplay="true"
+                        :autoplayHoverPause="true">
                   <slide v-for="(image, index) in images" :key="index">
                       <img :src="mediaService.imageResize(image)"/>
                   </slide>
                 </carousel>
+                <h2>
+                    {{ title }}
+                </h2>
                 <p>
                     {{ description }}
                 </p>
@@ -90,9 +90,14 @@ li {
 a {
   color: #42b983;
 }
+img {
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+}
 .modal-mask {
   position: fixed;
-//   z-index: 9998;
   top: 0;
   left: 0;
   width: 100%;
@@ -108,16 +113,14 @@ a {
 .modal-container {
   width: 80vw;
   margin: 0px auto;
-  padding: 20px 30px;
+  padding-bottom: 1rem;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
-
-// .modal-default-button {
-//   float: right;
-//   position: inherit;
-// }
+.VueCarousel-dot-container {
+  margin: 0!important;
+}
 </style>

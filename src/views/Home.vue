@@ -11,17 +11,19 @@
     </div>
     <div class="content">
       <div class="content__wrapper">
-        <section v-for="(work, index) in works" :key="index">
-          <Showcase :title="work.title"
-                    :description="work.description"
-                    :images="work.images"
-                    :showModal="modal"
-                    @onClose="handleClose()">
-          </Showcase>
-          <button @click="modal = work.title">
-            <img :src="mediaService.imageResize(work.images[0])"/>
-          </button>
-        </section>
+        <div class="grid__layout">
+          <section v-for="(work, index) in works" :key="index">
+            <Showcase :title="work.title"
+                      :description="work.description"
+                      :images="work.images"
+                      :showModal="modal"
+                      @onClose="handleClose()">
+            </Showcase>
+            <button @click="modal = work.title">
+              <img :src="mediaService.imageResize(work.images[0])"/>
+            </button>
+          </section>
+        </div>
       </div>
     </div>
   </div>
@@ -72,17 +74,24 @@ export default class Home extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .content {
     background: linear-gradient(0deg, rgb(255, 255, 255) 99%, rgba(255, 255, 255, 0) 100%);
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
   .content__wrapper {
-    max-width: 30rem;
+    max-width: 80vw;
     left: 0;
     right: 0;
     margin: auto;
+  }
+  .grid__layout {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    grid-gap: 10px;
+    background-color: transparent;
+    padding: 10px;
   }
   .title {
     font-size: 2rem;
@@ -102,8 +111,9 @@ export default class Home extends Vue {
     padding: 0!important;
   }
   img {
-    max-height: 500px;
-    max-width: 30rem;
+    max-height: 40vh;
+    width: 100%;
+    // max-width: 30rem;
   }
   section {
     margin-bottom: 0!important;
@@ -138,5 +148,11 @@ export default class Home extends Vue {
       word-wrap: break-word;
       margin: 0 1rem 0;
     }
+  .grid__layout {
+    display: grid;
+    grid-template-columns: fit-content(300px);
+    background-color: transparent;
+    padding: 10px;
+  }
   }
 </style>
