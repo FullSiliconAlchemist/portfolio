@@ -1,28 +1,31 @@
 <template>
-    <div class="modal-mask" v-if="title == showModal">
+    <div class="modal-mask" 
+      v-if="title == showModal">
         <div class="modal-wrapper">
-            <div class="modal-container">
+            <div class="modal-container media__width">
                 <carousel :per-page="1"
                         :navigation-enabled="true"
                         :min-swipe-distance="1"
                         :autoplay="true"
                         :autoplayHoverPause="true">
                   <slide v-for="(image, index) in images" :key="index">
-                      <img :src="mediaService.imageResize(image)"/>
+                    <img :src="mediaService.imageResize(image)"/>
                   </slide>
                 </carousel>
-                <h2>
+                <div class="description__zone">
+                  <h2>
                     {{ title }}
-                </h2>
-                <p>
+                  </h2>
+                  <p>
                     {{ description }}
-                </p>
-                <div class="modal-footer">
+                  </p>
+                  <div class="modal-footer">
                     <slot name="footer">
-                        <button class="modal-default-button" @click="closeModal()">
-                            OK
-                        </button>
+                      <button class="modal-default-button" @click="closeModal()">
+                        OK
+                      </button>
                     </slot>
+                  </div>
                 </div>
             </div>
         </div>
@@ -111,7 +114,6 @@ img {
   vertical-align: middle;
 }
 .modal-container {
-  width: 80vw;
   margin: 0px auto;
   padding-bottom: 1rem;
   background-color: #fff;
@@ -122,5 +124,16 @@ img {
 }
 .VueCarousel-dot-container {
   margin: 0!important;
+}
+.description__zone {
+  padding: 1rem;
+}
+.media__width {
+  width: 50vw;
+}
+@media only screen and (max-width: 768px) {
+  .media__width {
+    width: 80vw;
+  }
 }
 </style>

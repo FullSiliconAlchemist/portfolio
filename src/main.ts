@@ -5,7 +5,6 @@ import router from './router'
 import "@babylonjs/loaders/glTF";
 import './styles.scss'
 import { auth } from './firebase'
-import { Engine, Scene, ArcRotateCamera, Vector3, HemisphericLight, Mesh, MeshBuilder } from "@babylonjs/core";
 
 Vue.config.productionTip = false
 
@@ -19,7 +18,3 @@ auth.onAuthStateChanged(() => {
   }
 })
 
-// new Vue({
-//   router,
-//   render: h => h(App)
-// }).$mount('#app')
