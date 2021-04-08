@@ -79,6 +79,9 @@ export default class Home extends Vue {
     z-index: 10;
     background-color: transparent;
   }
+  img {
+    max-height: 500px;
+  }
   section {
     margin-bottom: 10rem!important;
     height: auto;
