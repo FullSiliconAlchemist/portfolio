@@ -64,7 +64,7 @@ export default class BabylonService {
         const engine = new Engine(canvas, true);
         const scene = new Scene(engine);
         const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 0.6, Math.PI / 2, 35, Vector3.Zero(), scene);
-        scene.clearColor = new Color4(0.02, 0.05, 0.08, 1);
+        scene.clearColor = new Color4(0.08, 0.12, 0.2, 1);
 
         // No default loading screen, should create my own
         const loadingScreen = new CustomLoadingScreen("I'm loading!!");

@@ -1,15 +1,17 @@
 <template>
   <div class="about">
     <section>
-      <h2>
-        Creatives can't help but make 
-      </h2>
-      <h1>
-        MAD
-      </h1>
-      <h2 class="mm">
-        multimedia.
-      </h2>
+      <div class="header">
+        <h2>
+          Creatives can't help but make 
+        </h2>
+        <h1>
+          MAD
+        </h1>
+        <h2 class="mm">
+          multimedia.
+        </h2>
+      </div>
       <p>
         I’m a believer in the power of multimedia to tell compelling stories, deliver timely content, and provide transformational opportunities for individuals and crowds.
         I believe information technology is the our best tool way to providing create a more informed world and ultimately a better one.
@@ -37,20 +39,11 @@ export default class About extends Vue { }
 </script>
 
 <style lang="scss">
-  .home {
-    scroll-snap-type: y mandatory;
-  }
-  .title {
-    font-size: 2rem;
-    margin-top: 8rem!important;
-    height: 20rem;
-    width: 80%;
-    position: relative;
+  .header {
+    max-width: 500px;
     left: 0;
     right: 0;
     margin: auto;
-    z-index: 10;
-    background-color: transparent;
   }
   section {
     margin-top: 10rem!important;
@@ -60,12 +53,12 @@ export default class About extends Vue { }
     left: 0;
     right: 0;
     margin: auto;
-    z-index: 10;
     background-color: transparent;
   }
   h1 {
     font-family: Chango-Regular;
-    font-size: 4rem;
+    font-stretch: expanded;
+    font-size: 5rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: center;

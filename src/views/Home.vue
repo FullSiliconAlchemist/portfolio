@@ -9,63 +9,80 @@
         MULTIMEDIA
       </h1>
     </div>
-    <section v-for="(work, index) in works" :key="index">
-      <h2>
-        {{ work.title }}
-      </h2>
-      <div v-for="(image, index) in work.images" :key="index">
-        <img :src="imageResize(image)"/>
+    <div class="content">
+      <div class="content__wrapper">
+        <section v-for="(work, index) in works" :key="index">
+          <Showcase :title="work.title"
+                    :description="work.description"
+                    :images="work.images"
+                    :showModal="modal"
+                    @onClose="handleClose()">
+          </Showcase>
+          <button @click="modal = work.title">
+            <img :src="mediaService.imageResize(work.images[0])"/>
+          </button>
+        </section>
       </div>
-      <p>
-        {{ work.description }}
-      </p>
-    </section>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Hero from '@/components/Hero.vue'; // @ is an alias to /src
+import Showcase from '@/components/Showcase.vue';
 import FirebaseService, { WorksModel } from '../services/firebase.service'
+import MediaService from '../services/media.service'
 
 @Component({
   components: {
-    Hero
+    Hero,
+    Showcase
   }
 })
 export default class Home extends Vue {
 
   fbService!: FirebaseService;
   works!: WorksModel[];
+  modal!: string;
 
-  imageResize(uploadCareLink: string): string {
-    const prefix = uploadCareLink.slice(0, 57);
-    const suffix = uploadCareLink.slice(57);
-    const resize = '/-/resize/' + Math.floor(window.innerWidth * 0.8) + '/';
-    return prefix + resize + suffix;
-  }
+  private mediaService!: MediaService;
 
   data() {
     this.fbService = new FirebaseService();
     this.works = this.fbService.getWorks();
+    this.mediaService = new MediaService();
     return {
-      works: this.works
+      works: this.works,
+      modal: this.modal
     }
   }
 
-  created(): void {
-    console.log('Vue created');
+  public handleClose(): void {
+    this.modal = '';
   }
 
-  destroy(): void {
-    console.log('Vue destroyed');
-  }
+  // created(): void {
+  //   console.log('Vue created');
+  // }
+
+  // destroy(): void {
+  //   console.log('Vue destroyed');
+  // }
 }
 </script>
 
 <style lang="scss">
-  .home {
-    scroll-snap-type: y mandatory;
+  .content {
+    background: linear-gradient(0deg, rgb(255, 255, 255) 99%, rgba(255, 255, 255, 0) 100%);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .content__wrapper {
+    max-width: 30rem;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
   .title {
     font-size: 2rem;
@@ -79,18 +96,23 @@ export default class Home extends Vue {
     z-index: 10;
     background-color: transparent;
   }
+  button {
+    border: none;
+    background: none;
+    padding: 0!important;
+  }
   img {
     max-height: 500px;
+    max-width: 30rem;
   }
   section {
-    margin-bottom: 10rem!important;
-    height: auto;
+    margin-bottom: 0!important;
     width: 80%;
+    height: auto;
     position: relative;
     left: 0;
     right: 0;
     margin: auto;
-    z-index: 10;
     background-color: transparent;
   }
   h1 {
