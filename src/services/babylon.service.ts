@@ -58,7 +58,7 @@ export class CustomLoadingScreen implements ILoadingScreen {
 
 export default class BabylonService {
 
-    public async serveScene(canvas: HTMLCanvasElement): Promise<void> {
+    public async serveScene(canvas: HTMLCanvasElement, heroAssetUrl: string): Promise<void> {
 
         // initialize babylon scene and engine
         const engine = new Engine(canvas, true);
@@ -66,11 +66,8 @@ export default class BabylonService {
         const camera: ArcRotateCamera = new ArcRotateCamera("Camera", Math.PI * 0.6, Math.PI / 2, 35, Vector3.Zero(), scene);
         scene.clearColor = new Color4(0.08, 0.12, 0.2, 1);
 
-        // No default loading screen, should create my own
         const loadingScreen = new CustomLoadingScreen("I'm loading!!");
-        // replace the default loading screen
         engine.loadingScreen = loadingScreen;
-        // show the loading screen
         engine.displayLoadingUI();
 
         // No camera movements unless the "check" button works
@@ -91,7 +88,7 @@ export default class BabylonService {
         //     }
         // });
 
-        SceneLoader.ImportMeshAsync('', '../assets/', 'mad.glb', scene)
+        SceneLoader.ImportMeshAsync('', heroAssetUrl, undefined, scene)
         .then((meshes) => {
             meshes.meshes.map((mesh) => {
                 if (mesh.name === '__root__') {
@@ -102,6 +99,8 @@ export default class BabylonService {
                     mad.rotate(new Vector3(0, 1, 0), 180)
                 }
             });
+        })
+        .finally(() => {
             engine.hideLoadingUI();
         });
 

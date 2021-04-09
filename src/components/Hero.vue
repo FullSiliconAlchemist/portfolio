@@ -7,7 +7,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import BabylonService from '../services/babylon.service'
+import BabylonService from '../services/babylon.service';
+import BackendService from '../services/backend.service';
 
 @Component
 export default class Hero extends Vue {
@@ -15,11 +16,14 @@ export default class Hero extends Vue {
 
   canvas!: HTMLCanvasElement;
   babylon!: BabylonService;
+  backend!: BackendService;
 
-  mounted(): void {
+  async mounted(): Promise<void> {
     this.canvas = document.getElementById("gameCanvas") as HTMLCanvasElement;
+    this.backend = new BackendService();
+    const blob = await this.backend.getAsset();
     this.babylon = new BabylonService();
-    this.babylon.serveScene(this.canvas);
+    this.babylon.serveScene(this.canvas, blob.data.urlAssetType);
   }
 
   // created(): void {
