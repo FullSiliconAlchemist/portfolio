@@ -38,7 +38,7 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class About extends Vue { }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .header {
     max-width: 500px;
     left: 0;

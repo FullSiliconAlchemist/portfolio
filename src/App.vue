@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 body {
   margin: 0;
 }
@@ -23,22 +23,18 @@ body {
 }
 
 #nav {
-  position: fixed;
+  // position: fixed;
   top: 0;
+  right: 0;
   z-index: 100;
   padding: 30px;
-  right: 0;
   a {
     font-weight: bold;
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #7ea6a6  ;
     }
   }
-}
-
-#canvas {
-  position: absolute;
 }
 </style>

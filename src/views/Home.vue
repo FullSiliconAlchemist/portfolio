@@ -6,11 +6,17 @@
         MAD
       </h1>
       <h1>
-        MULTIMEDIA
+        MULTI
+      </h1>
+      <h1>
+        MEDIA
       </h1>
     </div>
     <div class="content">
       <div class="content__wrapper">
+        <h2>
+          Projects
+        </h2>
         <div class="grid__layout">
           <section v-for="(work, index) in works" :key="index">
             <Showcase :title="work.title"
@@ -76,7 +82,6 @@ export default class Home extends Vue {
 
 <style scoped lang="scss">
   .content {
-    background: linear-gradient(0deg, rgb(255, 255, 255) 99%, rgba(255, 255, 255, 0) 100%);
     padding-top: 4rem;
     padding-bottom: 4rem;
   }
@@ -133,7 +138,9 @@ export default class Home extends Vue {
   }
   h2 {
     position: relative;
+    padding-bottom: 2rem;
     text-align: left;
+    font-size: 2rem;
     left: 0;
   }
   p {
@@ -148,11 +155,11 @@ export default class Home extends Vue {
       word-wrap: break-word;
       margin: 0 1rem 0;
     }
-  .grid__layout {
-    display: grid;
-    grid-template-columns: fit-content(300px);
-    background-color: transparent;
-    padding: 10px;
-  }
+    .grid__layout {
+      display: grid;
+      grid-template-columns: fit-content(300px);
+      background-color: transparent;
+      padding: 10px;
+    }
   }
 </style>
