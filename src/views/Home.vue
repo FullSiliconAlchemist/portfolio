@@ -14,14 +14,17 @@
     </div>
     <div class="content">
       <div class="content__wrapper">
-        <h2>
-          Projects
-        </h2>
+        <div class="sub__title">
+          <h2>
+            Projects
+          </h2>
+        </div>
         <div class="grid__layout">
           <section v-for="(work, index) in works" :key="index">
             <Showcase :title="work.title"
                       :description="work.description"
                       :images="work.images"
+                      :websiteUrl="work.url"
                       :showModal="modal"
                       @onClose="handleClose()">
             </Showcase>

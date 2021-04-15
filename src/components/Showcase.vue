@@ -16,13 +16,18 @@
                   <h2>
                     {{ title }}
                   </h2>
+                  <a v-if="websiteUrl" :href="websiteUrl">
+                    <h4>
+                     {{ websiteUrl }}
+                    </h4>
+                  </a>
                   <p>
                     {{ description }}
                   </p>
                   <div class="modal-footer">
                     <slot name="footer">
                       <button class="modal-default-button" @click="closeModal()">
-                        OK
+                        Close
                       </button>
                     </slot>
                   </div>
@@ -46,6 +51,7 @@ import { Carousel, Slide } from 'vue-carousel';
 export default class Hero extends Vue {
   @Prop() public title!: string;
   @Prop() public description!: string;
+  @Prop() public websiteUrl!: string;
   @Prop() public images!: string[];
   @Prop() public showModal!: string;
 
@@ -92,6 +98,7 @@ li {
 }
 a {
   color: #42b983;
+  text-decoration: none;
 }
 img {
   top: 0;
@@ -115,7 +122,6 @@ img {
 .modal-container {
   margin: 0px auto;
   padding-bottom: 1rem;
-  // background-color: #fff;
   background: rgba( 255, 255, 255, 0.25 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur( 4px );
@@ -134,7 +140,7 @@ img {
   padding: 1rem;
 }
 .media__width {
-  width: 50vw;
+  width: 60vw;
 }
 @media only screen and (max-width: 768px) {
   .media__width {
