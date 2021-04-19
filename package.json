@@ -2,6 +2,20 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "pwa": {
+    "name": "Mad Multimedia",
+    "themeColor": "#20303f",
+    "msTileColor": "#000000",
+    "appleMobileWebAppCapable": "yes",
+    "appleMobileWebAppStatusBarStyle": "black",
+    "workboxPluginMode": "InjectManifest",
+    "workboxOptions": {
+      "swSrc": "dev/sw.js"
+    }
+  },
+  "iconPaths": {
+    "favicon32": "img/icons/favicon.ico"
+  },
   "scripts": {
     "serve": "vue-cli-service serve --port 4200",
     "build": "vue-cli-service build",
