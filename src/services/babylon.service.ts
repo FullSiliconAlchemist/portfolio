@@ -73,30 +73,23 @@ export default class BabylonService {
         // No camera movements unless the "check" button works
         // camera.attachControl(canvas, true);
 
-        const light1: HemisphericLight = new HemisphericLight("light1", new Vector3(1, 1, 0), scene);
+        const light1: HemisphericLight = new HemisphericLight("light1", new Vector3(0, 1, 1), scene);
         let mad: AbstractMesh;
 
-        // scene.debugLayer.show();
-
-        // window.addEventListener("keydown", (ev) => {
-        //     if (ev.shiftKey && ev.ctrlKey && ev.altKey) {
-        //         if (scene.debugLayer.isVisible()) {
-        //             scene.debugLayer.hide();
-        //         } else {
-        //             scene.debugLayer.show();
-        //         }
-        //     }
-        // });
+        const mat = new StandardMaterial('material', scene);
 
         SceneLoader.ImportMeshAsync('', heroAssetUrl, undefined, scene)
         .then((meshes) => {
             meshes.meshes.map((mesh) => {
                 if (mesh.name === '__root__') {
                     mad = mesh;
-                    mad.scaling._x = 3
-                    mad.scaling._y = 3
-                    mad.scaling._z = 3
-                    mad.rotate(new Vector3(0, 1, 0), 180)
+                    mat.alphaMode = Engine.ALPHA_SUBTRACT;
+                    mad.material = mat;
+                    mad.scaling._x = 10;
+                    mad.scaling._y = 10;
+                    mad.scaling._z = 10;
+                    mad.rotate(new Vector3(0, 1, 0), 180);
+                    mad.rotate(new Vector3(0, 0, 1), 180);
                 }
             });
         })
@@ -137,6 +130,7 @@ export default class BabylonService {
                 pos = (Math.ceil(window.scrollY)) % points.length;
                 mad.position = points[pos];
                 mad.rotate(new Vector3(0, 1, 0), -0.001);
+                mad.rotate(new Vector3(0, 0, 1), 0.0005);
             }
             scene.render();
         });

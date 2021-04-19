@@ -12,6 +12,9 @@
       <a href="https://www.instagram.com/madmultimedia/">
         <i class="fab fa-instagram"></i>
       </a>
+      <a href="https://github.com/FullSiliconAlchemist">
+        <i class="fab fa-github"></i>
+      </a>
     </div>
     <router-view/>
   </div>
@@ -51,11 +54,13 @@ body {
   padding: 30px;
   font-size: 1.2rem;
   a {
+    text-decoration: none;
     font-weight: bold;
     color:#20303f;;
 
     &.router-link-exact-active {
-      color: #7ea6a6  ;
+      // color: #7ea6a6;
+      color:rgb(162, 32, 32);
     }
   }
 }

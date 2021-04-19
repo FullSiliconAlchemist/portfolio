@@ -5,7 +5,7 @@
         <h2>
           Creatives can't help but make 
         </h2>
-        <h1>
+        <h1 class="mad">
           MAD
         </h1>
         <h2 class="mm">
@@ -24,7 +24,7 @@
         </p>
         <p>
           Having worked at a tech startup for most of my undergrad in the last four years, I’ve seen the ins and outs of a startup company.
-          Whether it be the technological pipeline, from design to execution and deployment or on the business development side, from developing marketing strategies to raising venture capital.
+          Whether it be the design to execution and deployment on the technological pipeline, or on the business development side.
         </p>
       </div>
     </section>
@@ -39,6 +39,16 @@ export default class About extends Vue { }
 </script>
 
 <style scoped lang="scss">
+  .mad {
+    font-size: 6.5rem;
+    color:rgb(162, 32, 32);
+    letter-spacing: 10px;
+  }
+  .mm {
+    position: relative;
+    text-align: right;
+    left: 0;
+  }
   .header {
     max-width: 500px;
     left: 0;
@@ -73,14 +83,23 @@ export default class About extends Vue { }
     text-align: left;
     left: 0;
   }
-  .mm {
-    position: relative;
-    text-align: right;
-    left: 0;
-  }
   p {
     position: relative;
     text-align: left;
     padding-top: 2rem;
   }
+
+  @media screen and (max-width: 400px)  {
+  h1 {
+    font-family: Chango-Regular;
+    font-size: 2.5rem;
+    word-wrap: break-word;
+    margin: 0 1rem 0;
+  }
+  .mad {
+    font-size: 4.5rem;
+    color:rgb(162, 32, 32);
+    letter-spacing: normal;
+  }
+}
 </style>

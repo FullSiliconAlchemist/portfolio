@@ -9,7 +9,7 @@ export default class BackendService {
      * getWorks
      */
     public async getAsset(): Promise<AxiosResponse<Asset>> {
-        return axios.get(this.BACKEND + 'getSceneAsset?locations=gltf/axisOrientation.glb');
+        return axios.get(this.BACKEND + 'getSceneAsset?locations=gltf/logo.glb');
     }
 }
 

@@ -17,13 +17,13 @@
                     {{ title }}
                   </h2>
                   <a v-if="websiteUrl" :href="websiteUrl">
-                    <h4>
+                    <h3 class="url">
                      {{ websiteUrl }}
-                    </h4>
+                    </h3>
                   </a>
-                  <p>
+                  <h3>
                     {{ description }}
-                  </p>
+                  </h3>
                   <div class="modal-footer">
                     <slot name="footer">
                       <button class="modal-default-button" @click="closeModal()">
@@ -86,7 +86,7 @@ export default class Hero extends Vue {
     z-index: 10000;
 }
 h3 {
-  margin: 40px 0 0;
+  margin: 20px 0 20px;
 }
 ul {
   list-style-type: none;
@@ -97,7 +97,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
   text-decoration: none;
 }
 img {
@@ -105,6 +104,9 @@ img {
   bottom: 0;
   margin: auto;
   width: 100%;
+}
+.url {
+  color: rgb(162, 32, 32);
 }
 .modal-mask {
   position: fixed;
