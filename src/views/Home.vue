@@ -262,5 +262,8 @@ export default class Home extends Vue {
       background-color: transparent;
       padding: 10px;
     }
+    .work__summary {
+      content-visibility: hidden;
+    }
   }
 </style>
